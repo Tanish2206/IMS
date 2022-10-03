@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST" action='/midterm/{{id}}'>
+        {% csrf_token %}
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+          <input type="text" id="form2Example1" class="form-control" name="mark1" />
+          
+        </div>
+        <div class="form-outline mb-4">
+            <input type="text" id="form2Example1" class="form-control" name="mark2" />
+            
+          </div>
+          <div class="form-outline mb-4">
+            <input type="text" id="form2Example1" class="form-control" name="mark3" />
+            
+          </div>
+          <div class="form-outline mb-4">
+            <input type="text" id="form2Example1" class="form-control" name="mark4" />
+            
+          </div>
+          <div class="form-outline mb-4">
+            <input type="text" id="form2Example1" class="form-control" name="mark5" />
+            
+          </div>
+          <div class="form-outline mb-4">
+            <input type="text" id="form2Example1" class="form-control" name="mark6" />
+            
+          </div>
+        <div class="form-outline mb-4">
+          <input type="text" id="form2Example2" class="form-control" name="mark7" />
+          
+        </div>
+       <!-- Submit button -->
+       <input type="submit" value="submit">
+    </form>
+</body>
+</html>
