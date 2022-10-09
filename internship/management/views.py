@@ -21,12 +21,24 @@ def home(request):
 
         if user.exists():
 
-            supervi = CollegeSuper.objects.filter(CO_email=loginprn)
+            supervi = CollegeSuper.objects.filter(CO_prn=loginprn)
+            student=Student.objects.filter(S_prn=loginprn)
+            comp=company.objects.filter(C_email=loginprn)
             if supervi.exists():
                 for i in supervi:
                     a = i.Co_id
                 students = Student.objects.filter(SCO_id=a)
                 return render(request, 'home.html', {'stu': students})
+            elif student.exists():
+                for i in student:
+                    b=i.S_id
+                stu=Student.objects.get(S_id=b) 
+                return render(request,"studet.html", {'stu': stu})
+            elif comp.exists():
+                for i in comp:
+                    c=i.C_id
+                det=Student.objects.filter(SC_id=c)
+                return render(request,"compdash.html",{'su': det})
         else:
             return redirect('login')
     return render(request, 'login.html')
@@ -36,6 +48,9 @@ def details(request, id):
     detai = Student.objects.get(S_id=id)
     return render(request, 'details.html', {'det': detai})
 
+def cdetails(request, id):
+    detai = Student.objects.get(S_id=id)
+    return render(request, 'cdetails.html', {'det': detai})
 
 def midterm(request, id):
     if request.method == 'POST':
@@ -68,6 +83,38 @@ def midterm(request, id):
 
     return render(request, 'midformdet.html', {'id': id})
 
+def cmidterm(request, id):
+    if request.method == 'POST':
+        mark1 = request.POST.get('mark1')
+        mark2 = request.POST.get('mark2')
+        mark3 = request.POST.get('mark3')
+        mark4 = request.POST.get('mark4')
+        mark5 = request.POST.get('mark5')
+        mark6 = request.POST.get('mark6')
+        mark7 = request.POST.get('mark7')
+
+        sub = Cmideterm(C_domainandtech=mark1,
+                       C_profesethi=mark2,
+                       C_interpersonatl=mark3,
+                       C_presentation=mark4,
+                       C_communication=mark5,
+                       C_taskcompleted=mark6,
+                       C_questionans=mark7,
+                       C_total=int(mark1)+int(mark2)+int(mark3) +
+                       int(mark4)+int(mark5)+int(mark6)+int(mark7),
+                       C_SM_id=id)
+
+        sub.save()
+        detai = Student.objects.get(S_id=id)
+        return render(request, 'cdetails.html', {'det': detai})
+
+    mid = Cmideterm.objects.filter(C_SM_id=id)
+    if mid.exists():
+        return render(request, 'cmidform.html')
+
+    return render(request, 'cmidfordet.html', {'id': id})
+
+
 
 def endterm(request,id):
     if request.method == 'POST':
@@ -87,7 +134,7 @@ def endterm(request,id):
                        implemen=mark3,
                        observa=mark4,
                        domain=mark5,
-                      presentation=mark6,
+                      present=mark6,
                        communic=mark7,
                        interper=mark8,
                        profess=mark8,
@@ -105,3 +152,40 @@ def endterm(request,id):
         return render(request, 'endform.html')
 
     return render(request, 'endformdet.html', {'id': id})
+
+def cendterm(request,id):
+    if request.method == 'POST':
+        mark1 = request.POST.get('mark1')
+        mark2 = request.POST.get('mark2')
+        mark3 = request.POST.get('mark3')
+        mark4 = request.POST.get('mark4')
+        mark5 = request.POST.get('mark5')
+        mark6 = request.POST.get('mark6')
+        mark7 = request.POST.get('mark7')
+        mark8 = request.POST.get('mark8')
+        mark9 = request.POST.get('mark9')
+        mark10 = request.POST.get('mark10')
+
+        sub = CEndterm(C_background=mark1,
+                       C_scopeandobj=mark2,
+                       C_implemen=mark3,
+                       C_observa=mark4,
+                       C_domain=mark5,
+                       C_present=mark6,
+                       C_communic=mark7,
+                       C_interper=mark8,
+                       C_profess=mark8,
+                        C_qanda=mark8,
+                       C_E_total=int(mark1)+int(mark2)+int(mark3) +
+                       int(mark4)+int(mark5)+int(mark6)+int(mark7)+int(mark8)+int(mark9)+int(mark10),
+                       C_SE_id=id)
+
+        sub.save()
+        detai = Student.objects.get(S_id=id)
+        return render(request, 'cdetails.html', {'det': detai})
+
+    end = CEndterm.objects.filter(C_SE_id=id)
+    if end.exists():
+        return render(request, 'cendform.html')
+
+    return render(request, 'cendformdet.html', {'id': id})

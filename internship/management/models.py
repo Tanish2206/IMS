@@ -13,9 +13,19 @@ class CollegeSuper(models.Model):
     CO_addrss=models.CharField(max_length=50)
     CO_email=models.CharField(max_length=50)
     CO_pno=models.CharField(max_length=10)
+    CO_prn=models.CharField(max_length=15,null=True,blank=True)
 
     def __str__(self):
         return self.CO_name
+
+class company(models.Model):
+    C_id=models.AutoField(primary_key=True)   
+    C_name=models.CharField(max_length=50)
+    C_email=models.CharField(max_length=100,blank=True,null=True)
+
+    def __str__(self):
+        return self.C_name
+
 
 class Student(models.Model):
     S_id=models.AutoField(primary_key=True)        
@@ -23,7 +33,16 @@ class Student(models.Model):
     S_mname=models.CharField(max_length=30)
     S_lname=models.CharField(max_length=30)
     S_email=models.CharField(max_length=30)
-    SCO=models.ForeignKey(CollegeSuper,on_delete=models.DO_NOTHING)
+    S_address=models.CharField(max_length=50,null=True,blank=True)
+    S_prn=models.CharField(max_length=15,null=True,blank=True)
+    S_geneder=models.CharField(max_length=1,null=True,blank=True)
+    S_contact=models.CharField(max_length=10,null=True,blank=True)
+    SCO=models.ForeignKey(CollegeSuper,on_delete=models.DO_NOTHING,null=True,blank=True)
+    SC=models.ForeignKey(company,on_delete=models.DO_NOTHING,null=True,blank=True)
+    
+
+    def __str__(self):
+      return self.S_prn
 
 
 class mideterm(models.Model):
@@ -37,17 +56,46 @@ class mideterm(models.Model):
  total=models.IntegerField()
  SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
 
+
 class Endterm(models.Model):
  background=models.IntegerField()
  scopeandobj=models.IntegerField()
  implemen=models.IntegerField()
  observa=models.IntegerField()
  domain=models.IntegerField()
- presentation=models.IntegerField()
+ present=models.IntegerField()
  communic=models.IntegerField()
  interper=models.IntegerField()
  profess=models.IntegerField()
  qanda=models.IntegerField()
  E_total=models.IntegerField()
  SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+
+class Cmideterm(models.Model):
+ C_domainandtech=models.IntegerField()
+ C_profesethi=models.IntegerField()
+ C_interpersonatl=models.IntegerField()
+ C_presentation=models.IntegerField()
+ C_communication=models.IntegerField()
+ C_taskcompleted=models.IntegerField()
+ C_questionans=models.IntegerField()
+ C_total=models.IntegerField()
+ C_SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+
+
+class CEndterm(models.Model):
+ C_background=models.IntegerField()
+ C_scopeandobj=models.IntegerField()
+ C_implemen=models.IntegerField()
+ C_observa=models.IntegerField()
+ C_domain=models.IntegerField()
+ C_present=models.IntegerField()
+ C_communic=models.IntegerField()
+ C_interper=models.IntegerField()
+ C_profess=models.IntegerField()
+ C_qanda=models.IntegerField()
+ C_E_total=models.IntegerField()
+ C_SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+
+
 
