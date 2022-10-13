@@ -1,4 +1,3 @@
-from unittest.util import _MAX_LENGTH
 from django.db import models
 
 # Create your models here.
@@ -6,6 +5,9 @@ from django.db import models
 class Login(models.Model):
     Loginid=models.CharField(max_length=50)
     Password=models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+       return self.Loginid
 
 class CollegeSuper(models.Model):
     Co_id=models.AutoField(primary_key=True)
@@ -42,7 +44,7 @@ class Student(models.Model):
     
 
     def __str__(self):
-      return self.S_prn
+      return (self.S_fname + " " + self.S_lname)
 
 
 class mideterm(models.Model):
@@ -55,6 +57,9 @@ class mideterm(models.Model):
  questionans=models.IntegerField()
  total=models.IntegerField()
  SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+
+ def __str__(self) -> str:
+    return self.SM
 
 
 class Endterm(models.Model):
