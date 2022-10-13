@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .models import *
@@ -11,16 +12,16 @@ def login(request):
 
 def home(request):
     if request.method == 'POST':
+        
         loginprn = request.POST['prn']
-        print(loginprn)
+
         loginpass = request.POST['pass']
-        print(loginpass)
 
         user = Login.objects.filter(Loginid=loginprn, Password=loginpass)
-        print(user)
+
+
 
         if user.exists():
-
             supervi = CollegeSuper.objects.filter(CO_prn=loginprn)
             student=Student.objects.filter(S_prn=loginprn)
             comp=company.objects.filter(C_email=loginprn)
@@ -42,6 +43,7 @@ def home(request):
         else:
             return redirect('login')
     return render(request, 'login.html')
+
 
 
 def details(request, id):
