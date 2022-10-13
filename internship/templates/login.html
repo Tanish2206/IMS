@@ -20,6 +20,7 @@
       type="text/css"
       href="{% static 'css/login.css' %}"
     />
+    <link rel="stylesheet" href="css/login.css" />
   </head>
   <body>
     <div>
@@ -27,6 +28,7 @@
         <div class="container py-5 h-100">
           <div
             class="p-5 row d-flex align-items-center justify-content-center h-100"
+            class="row d-flex align-items-center justify-content-center h-100"
           >
             <div class="col-md-8 col-lg-7 col-xl-6">
               <img
@@ -40,6 +42,8 @@
             >
               <br />
               <h2 class="text-center">Login</h2>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+              <h2>Login</h2>
               <br />
               <form method="POST" action="/home">
                 {% csrf_token %}
@@ -55,6 +59,11 @@
                     class="shadow-sm form-control form-control-lg"
                     placeholder="Login ID"
                   />
+                    class="form-control form-control-lg"
+                  />
+                  <label class="form-label" for="form1Example13"
+                    >Login ID
+                  </label>
                 </div>
 
                 <!-- Password input -->
@@ -78,6 +87,19 @@
                   class="btn btn-primary btn-lg col-12"
                   value="Sign In"
                 />
+                    class="form-control form-control-lg"
+                  />
+                  <label class="form-label" for="form1Example23"
+                    >Password</label
+                  >
+                </div>
+
+                
+
+                <!-- Submit button -->
+                <input type="submit" class="btn btn-primary btn-lg col-12"  value="submit">
+                  Sign in
+                </input>
               </form>
             </div>
           </div>
@@ -85,4 +107,5 @@
       </section>
     </div>
   </body>
+</html>
 </html>
