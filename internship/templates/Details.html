@@ -10,9 +10,11 @@
 <body>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">{{det.S_fname}}</h5>
-          <p class="card-text">{{det.S_email}}</p>
-          <p class="card-text">{{det.SC}}</p>
+        {% for i in det %}
+          <h5 class="card-title">{{i.S_fname}}</h5>
+          <p class="card-text">{{i.S_email}}</p>
+          <p class="card-text">{{i.SC.PC}}</p>
+        {% endfor %}
           
         </div>
     </div>

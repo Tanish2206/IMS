@@ -24,7 +24,7 @@ def home(request):
         if user.exists():
             supervi = CollegeSuper.objects.filter(CO_prn=loginprn)
             student=Student.objects.filter(S_prn=loginprn)
-            comp=company.objects.filter(C_email=loginprn)
+            comp=compper.objects.filter(P_email=loginprn)
             if supervi.exists():
                 for i in supervi:
                     a = i.Co_id
@@ -37,7 +37,7 @@ def home(request):
                 return render(request,"studet.html", {'stu': stu})
             elif comp.exists():
                 for i in comp:
-                    c=i.C_id
+                    c=i.P_id
                 det=Student.objects.filter(SC_id=c)
                 return render(request,"compdash.html",{'su': det})
         else:
@@ -47,7 +47,8 @@ def home(request):
 
 
 def details(request, id):
-    detai = Student.objects.get(S_id=id)
+    detai = Student.objects.filter(S_id=id).select_related('SC')
+    # print(detai)
     return render(request, 'details.html', {'det': detai})
 
 def cdetails(request, id):
@@ -139,8 +140,8 @@ def endterm(request,id):
                       present=mark6,
                        communic=mark7,
                        interper=mark8,
-                       profess=mark8,
-                        qanda=mark8,
+                       profess=mark9,
+                        qanda=mark10,
                        E_total=int(mark1)+int(mark2)+int(mark3) +
                        int(mark4)+int(mark5)+int(mark6)+int(mark7)+int(mark8)+int(mark9)+int(mark10),
                        SE_id=id)
@@ -176,8 +177,8 @@ def cendterm(request,id):
                        C_present=mark6,
                        C_communic=mark7,
                        C_interper=mark8,
-                       C_profess=mark8,
-                        C_qanda=mark8,
+                       C_profess=mark9,
+                        C_qanda=mark10,
                        C_E_total=int(mark1)+int(mark2)+int(mark3) +
                        int(mark4)+int(mark5)+int(mark6)+int(mark7)+int(mark8)+int(mark9)+int(mark10),
                        C_SE_id=id)
