@@ -37,7 +37,7 @@ class Student(models.Model):
     S_email=models.CharField(max_length=30)
     S_address=models.CharField(max_length=50,null=True,blank=True)
     S_prn=models.CharField(max_length=15,null=True,blank=True)
-    S_geneder=models.CharField(max_length=1,null=True,blank=True)
+    S_geneder=models.CharField(max_length=1)
     S_contact=models.CharField(max_length=10,null=True,blank=True)
     SCO=models.ForeignKey(CollegeSuper,on_delete=models.DO_NOTHING,null=True,blank=True)
     SC=models.ForeignKey(company,on_delete=models.DO_NOTHING,null=True,blank=True)
