@@ -1,76 +1,52 @@
+{% extends 'main.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Details</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family: Arial;
-        padding: 20px;
-        background: #f1f1f1;
-      }
-
-      .header {
-        padding: 2px;
-        font-size: 40px;
-        text-align: center;
-        background: white;
-      }
-
-      .leftcolumn {
-        float: left;
-        width: 100%;
-      }
-
-      .card {
-        background-color: white;
-        padding: 20px;
-        margin-top: 20px;
-      }
-
-      .row:after {
-        content: "";
-        display: table;
-        clear: both;
-      }
-
-      @media screen and (max-width: 800px) {
-        .leftcolumn,
-        .rightcolumn {
-          width: 100%;
-          padding: 0;
-        }
-      }
-    </style>
+    {% block title %}
+    <title>Students List</title>
+    {% endblock title %}
   </head>
   <body>
-    {% for i in stu %}
-    <div class="card">
-      <a
-        style="text-decoration: none; color: black"
-        href="/home/{{i.S_id}}"
-        type="submit"
-      >
-        <p>{{i.S_fname}} {{i.S_mname}} {{i.S_lname}}</p>
-      </a>
+    {% block welcome %}
+    <big>Welcome, {{teacher.CO_name}}</big>
+    {% endblock welcome %} {% block content %}
 
-      <div class="card-body text-center">
-        <img
-          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-          alt="avatar"
-          class="rounded-circle img-fluid"
-          style="width: 150px"
-        />
-        <h5 class="my-3">{{stu.S_fname}} {{stu.S_lname}}</h5>
-        <p class="text-muted mb-4">{{stu.S_address}}</p>
-      </div>
+    <div class="container-lg">
+      <h3 class="mt-3 mb-3">Students List</h3>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">PRN</th>
+            <th scope="col">Company Supervisor</th>
+            <th scope="col">Mid-Term</th>
+            <th scope="col">End-Term</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in stu %}
+          <tr>
+            <th scope="row">{{i.S_id}}</th>
+            <td>
+              <a href="/home/{{i.S_id}}"
+                >{{i.S_fname}} {{i.S_mname}} {{i.S_lname}}
+              </a>
+            </td>
+            <td>{{i.S_prn}}</td>
+            <td>{{i.SC}}</td>
+            <td id="mid-term-form-data">Filled</td>
+            <td id="end-term-form-data">Not Filled</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    {% endfor %}
+    {% endblock content %}
   </body>
 </html>

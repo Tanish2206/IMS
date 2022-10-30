@@ -1,60 +1,125 @@
+{% extends 'main.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <form method="POST" action='/endterm/{{id}}'>
+  <body>
+    {% block welcome%} {% endblock welcome %} {% block content %}
+    <div class="container">
+      <h1 class="mt-2 mb-2 text-center">End-Term Evaluation Form</h1>
+      <h4 class="mb-1 text-muted text-center">Student</h4>
+      <h4 class="mb-5 text-muted text-center">PRN</h4>
+
+      <form method="POST" action="/endterm/{{id}}">
         {% csrf_token %}
         <!-- Email input -->
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" name="mark1" />
+        <div class="container">
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Background & Topic / Task Selection</label
+              >
+              <input
+                type="text"
+                class="col-11 col-lg-4 form-control"
+                name="mark1"
+              />
+              <label class="col-1 text-muted col-form-label text-left"
+                >/10</label
+              >
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Scope & Objective</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark2" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Implementation / Methodology Used</label
+              >
+              <input
+                type="text"
+                class="col-11 col-lg-4 form-control text-right"
+                name="mark3"
+              />
+              <label class="col-1 text-muted col-form-label text-left"
+                >/10</label
+              >
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Finding / Observation / Analysis</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark4" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Domain & Technical Knowledge (Key Learning)</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark5" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Presentation (PPT/ Case Study/ Documentation)</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark6" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Communication Skills</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark7" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Interpersonal Skills</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark8" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Professional Ethics</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark9" />
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Question/ Answer</label
+              >
+              <input type="text" class="col-lg-4 form-control" name="mark10" />
+            </div>
+          </div>
 
+          <!-- Submit button -->
+          <input class="justify-content-center" type="submit" value="submit" />
         </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" name="mark2" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" name="mark3" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" name="mark4" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" name="mark5" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example1" class="form-control" name="mark6" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example2" class="form-control" name="mark7" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example2" class="form-control" name="mark8" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example2" class="form-control" name="mark9" />
-
-        </div>
-        <div class="form-outline mb-4">
-            <input type="text" id="form2Example2" class="form-control" name="mark10" />
-
-        </div>
-        <!-- Submit button -->
-        <input type="submit" value="submit">
-    </form>
-</body>
-
+      </form>
+    </div>
+    {% endblock content %}
+  </body>
 </html>

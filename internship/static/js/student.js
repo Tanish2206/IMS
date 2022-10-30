@@ -5,8 +5,10 @@ var gender = document.getElementById("student-gender").innerText;
 
 if (gender === "M") {
   random = males[Math.floor(Math.random() * males.length)];
-} else {
+} else if (gender === "F") {
   random = females[Math.floor(Math.random() * females.length)];
+} else {
+  random = 3;
 }
 
 document

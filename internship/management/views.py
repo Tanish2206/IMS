@@ -29,7 +29,8 @@ def home(request):
                 for i in supervi:
                     a = i.Co_id
                 students = Student.objects.filter(SCO_id=a)
-                return render(request, 'home.html', {'stu': students})
+                teacher = i
+                return render(request, 'home.html', {'stu': students , 'teacher' : teacher})
             elif student.exists():
                 for i in student:
                     b=i.S_id
@@ -39,7 +40,8 @@ def home(request):
                 for i in comp:
                     c=i.C_id
                 det=Student.objects.filter(SC_id=c)
-                return render(request,"compdash.html",{'su': det})
+                supervisor = i
+                return render(request,"compdash.html",{'stu': det, 'supervisor' : supervisor})
         else:
             return redirect('login')
     return render(request, 'login.html')

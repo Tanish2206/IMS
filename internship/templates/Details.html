@@ -22,13 +22,14 @@
         <p class="card-text">{{det.S_email}}</p>
       </div>
     </div>
-    <a href="/midterm/{{det.S_id}}" type="submit">mid term</a>
+    <a href="/midterm/{{det.S_id}}" type="submit">Mid term</a>
     <a href="/endterm/{{det.S_id}}" type="submit">End term</a>
 
     {% block content %}
     <section style="background-color: #eee; font-family: 'Ubuntu'">
       <div class="container py-5">
         <div class="container mb-3"><h3>Profile Information</h3></div>
+
         <div class="col-lg-12">
           <div class="card mb-4 col-lg-12">
             <div class="card-body text-center">
@@ -36,6 +37,7 @@
                 src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                 alt="avatar"
                 class="rounded-circle img-fluid"
+                id="student-avatar"
                 style="width: 150px"
               />
               <h5 class="my-3">{{det.S_fname}} {{det.S_lname}}</h5>
@@ -98,7 +100,31 @@
                   <p class="mb-0">Gender</p>
                 </div>
                 <div class="col-sm-9">
-                  <p class="text-muted mb-0">{{det.S_geneder}}</p>
+                  <p id="student-gender" class="text-muted mb-0">
+                    {{det.S_geneder}}
+                  </p>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mid-Term Form</p>
+                </div>
+                <div class="col-sm-9">
+                  <a href="/midterm/{{det.S_id}}" type="submit" class="mb-0"
+                    >Fill
+                  </a>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">End-Term Form</p>
+                </div>
+                <div class="col-sm-9">
+                  <a href="/endterm/{{det.S_id}}" type="submit" class="mb-0"
+                    >Fill
+                  </a>
                 </div>
               </div>
             </div>
@@ -107,6 +133,8 @@
       </div>
     </section>
 
-    {% endblock content %}
+    {% endblock content %}{% block JS %}{% load static %}
+    <script src="{% static 'js/student.js' %}"></script>
+    {% endblock JS %}
   </body>
 </html>
