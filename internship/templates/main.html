@@ -18,12 +18,13 @@
     <br hidden />
     {% block Fonts %} {% endblock Fonts %}
   </head>
-  <body style="font-family: 'Ubuntu" ;>
+  <body>
     <nav class="navbar navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="#">
+          {% load static %}
           <img
-            src="https://mitwpu.edu.in/sites/mitwpu.edu.in/theme/images/icons/android-chrome-192x192.png"
+            src="{% static 'images/mitwpu-logo.png' %}"
             alt=""
             width="120"
             height="120"

@@ -141,8 +141,8 @@ def endterm(request,id):
                       present=mark6,
                        communic=mark7,
                        interper=mark8,
-                       profess=mark8,
-                        qanda=mark8,
+                       profess=mark9,
+                        qanda=mark10,
                        E_total=int(mark1)+int(mark2)+int(mark3) +
                        int(mark4)+int(mark5)+int(mark6)+int(mark7)+int(mark8)+int(mark9)+int(mark10),
                        SE_id=id)
@@ -153,9 +153,12 @@ def endterm(request,id):
 
     end = Endterm.objects.filter(SE_id=id)
     if end.exists():
-        return render(request, 'endform.html')
+        form = Endterm.objects.get(SE = id)
+        student = Student.objects.get(S_id = id)
+        return render(request, 'endform.html', {'form' : form, 'student': student})
 
-    return render(request, 'endformdet.html', {'id': id})
+    student = Student.objects.get(S_id=id)
+    return render(request, 'endformdet.html', {'student': student})
 
 def cendterm(request,id):
     if request.method == 'POST':
@@ -178,8 +181,8 @@ def cendterm(request,id):
                        C_present=mark6,
                        C_communic=mark7,
                        C_interper=mark8,
-                       C_profess=mark8,
-                        C_qanda=mark8,
+                       C_profess=mark9,
+                        C_qanda=mark10,
                        C_E_total=int(mark1)+int(mark2)+int(mark3) +
                        int(mark4)+int(mark5)+int(mark6)+int(mark7)+int(mark8)+int(mark9)+int(mark10),
                        C_SE_id=id)
