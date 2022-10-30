@@ -19,3 +19,5 @@ document
       random +
       ".webp"
   );
+
+// Figure out how to change the avatar url to static directory

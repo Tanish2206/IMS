@@ -12,6 +12,11 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+    <style>
+      * {
+        font-family: cursive;
+      }
+    </style>
     {% load static %}
     <br hidden />
     {% block CSS %}{% endblock CSS %}
@@ -19,6 +24,7 @@
     {% block Fonts %} {% endblock Fonts %}
   </head>
   <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="#">
@@ -36,6 +42,7 @@
       </div>
     </nav>
 
+    <!-- Main Content -->
     {% block content %} {% endblock content %}
     <br hidden />
     {% block JS %} {% endblock JS %}

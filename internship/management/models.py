@@ -76,8 +76,9 @@ class Endterm(models.Model):
  E_total=models.IntegerField()
  SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
 
-def __str__(self) -> str:
+ def __str__(self) -> str:
     return (self.SE.S_fname + " " + self.SE.S_lname)
+    
 
 class Cmideterm(models.Model):
  C_domainandtech=models.IntegerField()

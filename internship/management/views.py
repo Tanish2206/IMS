@@ -67,11 +67,11 @@ def midterm(request, id):
         mark7 = request.POST.get('mark7')
 
         sub = mideterm(domainandtech=mark1,
-                       profesethi=mark2,
-                       interpersonatl=mark3,
-                       presentation=mark4,
-                       communication=mark5,
-                       taskcompleted=mark6,
+                       presentation=mark2,
+                       taskcompleted=mark3,
+                       communication=mark4,
+                       interpersonatl=mark5,
+                       profesethi=mark6,
                        questionans=mark7,
                        total=int(mark1)+int(mark2)+int(mark3) +
                        int(mark4)+int(mark5)+int(mark6)+int(mark7),
@@ -83,9 +83,12 @@ def midterm(request, id):
 
     mid = mideterm.objects.filter(SM_id=id)
     if mid.exists():
-        return render(request, 'midform.html')
+        form = mideterm.objects.get(SM = id)
+        student = Student.objects.get(S_id = id)
+        return render(request, 'midform.html', {'form' : form, 'student': student})
 
-    return render(request, 'midformdet.html', {'id': id})
+    student = Student.objects.get(S_id=id)
+    return render(request, 'midformdet.html', {'student': student})
 
 def cmidterm(request, id):
     if request.method == 'POST':
