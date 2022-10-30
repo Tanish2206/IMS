@@ -69,9 +69,10 @@ class mideterm(models.Model):
  questionans=models.IntegerField()
  total=models.IntegerField()
  SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+ 
+ def __str__(self) -> str:
+    return (self.SM.S_fname + " " + self.SM.S_lname)
 
-#  def __str__(self) -> str:
-#     return self.SM
 
 
 class Endterm(models.Model):
@@ -88,6 +89,10 @@ class Endterm(models.Model):
  E_total=models.IntegerField()
  SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
 
+ def __str__(self) -> str:
+    return (self.SE.S_fname + " " + self.SE.S_lname)
+    
+
 class Cmideterm(models.Model):
  C_domainandtech=models.IntegerField()
  C_profesethi=models.IntegerField()
@@ -98,6 +103,9 @@ class Cmideterm(models.Model):
  C_questionans=models.IntegerField()
  C_total=models.IntegerField()
  C_SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+
+ def __str__(self) -> str:
+    return (self.C_SM.S_fname + " " + self.C_SM.S_lname)
 
 
 class CEndterm(models.Model):
@@ -113,6 +121,9 @@ class CEndterm(models.Model):
  C_qanda=models.IntegerField()
  C_E_total=models.IntegerField()
  C_SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+
+ def __str__(self) -> str:
+    return (self.C_SE.S_fname + " " + self.C_SE.S_lname)
 
 
 

@@ -29,7 +29,8 @@ def home(request):
                 for i in supervi:
                     a = i.Co_id
                 students = Student.objects.filter(SCO_id=a)
-                return render(request, 'home.html', {'stu': students})
+                teacher = i
+                return render(request, 'home.html', {'stu': students , 'teacher' : teacher})
             elif student.exists():
                 for i in student:
                     b=i.S_id
@@ -39,7 +40,8 @@ def home(request):
                 for i in comp:
                     c=i.P_id
                 det=Student.objects.filter(SC_id=c)
-                return render(request,"compdash.html",{'su': det})
+                supervisor = i
+                return render(request,"compdash.html",{'stu': det, 'supervisor' : supervisor})
         else:
             return redirect('login')
     return render(request, 'login.html')
@@ -66,11 +68,11 @@ def midterm(request, id):
         mark7 = request.POST.get('mark7')
 
         sub = mideterm(domainandtech=mark1,
-                       profesethi=mark2,
-                       interpersonatl=mark3,
-                       presentation=mark4,
-                       communication=mark5,
-                       taskcompleted=mark6,
+                       presentation=mark2,
+                       taskcompleted=mark3,
+                       communication=mark4,
+                       interpersonatl=mark5,
+                       profesethi=mark6,
                        questionans=mark7,
                        total=int(mark1)+int(mark2)+int(mark3) +
                        int(mark4)+int(mark5)+int(mark6)+int(mark7),
@@ -82,9 +84,12 @@ def midterm(request, id):
 
     mid = mideterm.objects.filter(SM_id=id)
     if mid.exists():
-        return render(request, 'midform.html')
+        form = mideterm.objects.get(SM = id)
+        student = Student.objects.get(S_id = id)
+        return render(request, 'midform.html', {'form' : form, 'student': student})
 
-    return render(request, 'midformdet.html', {'id': id})
+    student = Student.objects.get(S_id=id)
+    return render(request, 'midformdet.html', {'student': student})
 
 def cmidterm(request, id):
     if request.method == 'POST':
@@ -152,9 +157,12 @@ def endterm(request,id):
 
     end = Endterm.objects.filter(SE_id=id)
     if end.exists():
-        return render(request, 'endform.html')
+        form = Endterm.objects.get(SE = id)
+        student = Student.objects.get(S_id = id)
+        return render(request, 'endform.html', {'form' : form, 'student': student})
 
-    return render(request, 'endformdet.html', {'id': id})
+    student = Student.objects.get(S_id=id)
+    return render(request, 'endformdet.html', {'student': student})
 
 def cendterm(request,id):
     if request.method == 'POST':
