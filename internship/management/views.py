@@ -24,7 +24,7 @@ def home(request):
         if user.exists():
             supervi = CollegeSuper.objects.filter(CO_prn=loginprn)
             student=Student.objects.filter(S_prn=loginprn)
-            comp=company.objects.filter(C_email=loginprn)
+            comp=compper.objects.filter(P_email=loginprn)
             if supervi.exists():
                 for i in supervi:
                     a = i.Co_id
@@ -38,7 +38,7 @@ def home(request):
                 return render(request,"studet.html", {'stu': stu})
             elif comp.exists():
                 for i in comp:
-                    c=i.C_id
+                    c=i.P_id
                 det=Student.objects.filter(SC_id=c)
                 supervisor = i
                 return render(request,"compdash.html",{'stu': det, 'supervisor' : supervisor})
@@ -49,7 +49,8 @@ def home(request):
 
 
 def details(request, id):
-    detai = Student.objects.get(S_id=id)
+    detai = Student.objects.filter(S_id=id).select_related('SC')
+    # print(detai)
     return render(request, 'details.html', {'det': detai})
 
 def cdetails(request, id):
