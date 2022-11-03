@@ -7,99 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block title %}
-    <title>End-Term Evaluation</title>
+    <title>Mid-Term Evaluation Form</title>
     {% endblock title %}
   </head>
 
   <body>
     {% block welcome%} {% endblock welcome %} {% block content %}
     <div class="container">
-      <h1 class="mt-2 mb-2 text-center">Finalized End-Term Evaluation</h1>
+      <h1 class="mt-2 mb-2 text-center">Mid-Term Evaluation Form</h1>
       <h5 class="mb-1 text-muted text-center">
         Student : {{student.S_fname}} {{student.S_lname}}
       </h5>
       <h5 class="mb-5 text-muted text-center">PRN : {{student.S_prn}}</h5>
 
-      <form method="POST" action="/endterm/{{student.S_id}}">
+      <form method="POST" action="/midterm/C/{{student.S_id}}">
         {% csrf_token %}
         <!-- Email input -->
         <div class="container text-center">
-          <div class="form-outline mb-4">
-            <div class="row justify-content-center">
-              <label class="col-lg-4 col-form-label text-lg-right"
-                >Background & Topic / Task Selection</label
-              >
-              <input
-                type="number"
-                readonly
-                class="col-3 col-lg-3 form-control"
-                name="mark1"
-                min="1"
-                max="10"
-                value="{{form.background}}"
-              />
-              <label class="col-1 text-muted col-form-label text-left"
-                >/10</label
-              >
-            </div>
-          </div>
-          <div class="form-outline mb-4">
-            <div class="row justify-content-center">
-              <label class="col-lg-4 col-form-label text-lg-right"
-                >Scope & Objective</label
-              >
-              <input
-                type="number"
-                readonly
-                class="col-3 col-lg-3 form-control"
-                name="mark2"
-                min="1"
-                max="10"
-                value="{{form.scopeandobj}}"
-              />
-              <label class="col-1 text-muted col-form-label text-left"
-                >/10</label
-              >
-            </div>
-          </div>
-          <div class="form-outline mb-4">
-            <div class="row justify-content-center">
-              <label class="col-lg-4 col-form-label text-lg-right"
-                >Implementation / Methodology Used</label
-              >
-              <input
-                type="number"
-                readonly
-                class="col-3 col-lg-3 form-control"
-                name="mark3"
-                min="1"
-                max="20"
-                value="{{form.implemen}}"
-              />
-              <label class="col-1 text-muted col-form-label text-left"
-                >/20</label
-              >
-            </div>
-          </div>
-          <div class="form-outline mb-4">
-            <div class="row justify-content-center">
-              <label class="col-lg-4 col-form-label text-lg-right"
-                >Finding / Observation / Analysis</label
-              >
-              <input
-                type="number"
-                readonly
-                class="col-3 col-lg-3 form-control"
-                name="mark4"
-                min="1"
-                max="10"
-                value="{{form.observa}}"
-              />
-              <label class="col-1 text-muted col-form-label text-left"
-                >/10</label
-              >
-            </div>
-          </div>
           <div class="form-outline mb-4">
             <div class="row justify-content-center">
               <label class="col-lg-4 col-form-label text-lg-right"
@@ -107,12 +31,12 @@
               >
               <input
                 type="number"
-                readonly
                 class="col-3 col-lg-3 form-control"
-                name="mark5"
+                name="mark1"
                 min="1"
                 max="30"
-                value="{{form.domain}}"
+                required
+                placeholder="15"
               />
               <label class="col-1 text-muted col-form-label text-left"
                 >/30</label
@@ -126,15 +50,34 @@
               >
               <input
                 type="number"
-                readonly
                 class="col-3 col-lg-3 form-control"
-                name="mark6"
+                name="mark2"
                 min="1"
                 max="30"
-                value="{{form.present}}"
+                required
+                placeholder="15"
               />
               <label class="col-1 text-muted col-form-label text-left"
                 >/30</label
+              >
+            </div>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="row justify-content-center">
+              <label class="col-lg-4 col-form-label text-lg-right"
+                >Task Completed Till Date</label
+              >
+              <input
+                type="number"
+                class="col-3 col-lg-3 form-control"
+                name="mark3"
+                min="1"
+                max="20"
+                required
+                placeholder="10"
+              />
+              <label class="col-1 text-muted col-form-label text-left"
+                >/20</label
               >
             </div>
           </div>
@@ -145,12 +88,12 @@
               >
               <input
                 type="number"
-                readonly
                 class="col-3 col-lg-3 form-control"
-                name="mark7"
+                name="mark4"
                 min="1"
                 max="10"
-                value="{{form.communic}}"
+                required
+                placeholder="5"
               />
               <label class="col-1 text-muted col-form-label text-left"
                 >/10</label
@@ -164,12 +107,12 @@
               >
               <input
                 type="number"
-                readonly
                 class="col-3 col-lg-3 form-control"
-                name="mark8"
+                name="mark5"
                 min="1"
                 max="10"
-                value="{{form.interper}}"
+                required
+                placeholder="5"
               />
               <label class="col-1 text-muted col-form-label text-left"
                 >/10</label
@@ -179,16 +122,16 @@
           <div class="form-outline mb-4">
             <div class="row justify-content-center">
               <label class="col-lg-4 col-form-label text-lg-right"
-                >Professional Ethics</label
+                >Professional Ethics)</label
               >
               <input
                 type="number"
-                readonly
                 class="col-3 col-lg-3 form-control"
-                name="mark9"
+                name="mark6"
                 min="1"
                 max="10"
-                value="{{form.profess}}"
+                required
+                placeholder="5"
               />
               <label class="col-1 text-muted col-form-label text-left"
                 >/10</label
@@ -202,27 +145,39 @@
               >
               <input
                 type="number"
-                readonly
                 class="col-3 col-lg-3 form-control"
-                name="mark10"
+                name="mark7"
                 min="1"
                 max="10"
-                value="{{form.qanda}}"
+                required
+                placeholder="5"
               />
               <label class="col-1 text-muted col-form-label text-left"
                 >/10</label
               >
             </div>
           </div>
+          <div class="form-outline mb-4">
+            <div class="justify-content-center">
+              <input
+                type="checkbox"
+                name="finalize"
+                required
+                class="text-right"
+              />
+              <label class="col-11 col-lg-auto col-form-label text-center"
+                >I understand that marks once entered cannot be altered</label
+              >
+            </div>
+          </div>
 
+          <!-- Submit button -->
           <input
-            type="button"
-            value="Go Back"
-            onClick="javascript:history.go(-1);"
-            class="justify-content-centre mt-3 mb-5 btn btn-outline-dark col-4 col-lg-2"
+            class="justify-content-centre mb-5 btn btn-outline-dark col-4 col-lg-2"
+            type="submit"
+            value="Lock Marks"
           />
         </div>
-        <br />
       </form>
     </div>
     {% endblock content %}

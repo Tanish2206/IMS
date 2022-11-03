@@ -15,17 +15,14 @@
     />
   </head>
   <body>
-    {% block welcome %} {% endblock welcome %}
-    <div class="card" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">{{det.S_fname}}</h5>
-        <p class="card-text">{{det.S_email}}</p>
-      </div>
-    </div>
-    <a href="/midterm/{{det.S_id}}" type="submit">Mid term</a>
-    <a href="/endterm/{{det.S_id}}" type="submit">End term</a>
-
-    {% block content %}
+    {% block welcome %}
+    <input
+      type="button"
+      value="Back To Homepage"
+      onClick="javascript:history.go(-1);"
+      class="btn btn-outline-dark"
+    />
+    {% endblock welcome %} {% block content %}
     <section style="background-color: #eee; font-family: 'Ubuntu'">
       <div class="container py-5">
         <div class="container mb-3"><h3>Profile Information</h3></div>
@@ -41,7 +38,7 @@
                 style="width: 150px"
               />
               <h5 class="my-3">{{det.S_fname}} {{det.S_lname}}</h5>
-              <p class="text-muted mb-4">{{det.S_address}}</p>
+              <p class="text-muted mb-4">{{det.S_prn}}</p>
             </div>
           </div>
         </div>
@@ -108,23 +105,35 @@
               <hr />
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">Mid-Term Form</p>
+                  <p class="mb-0">Mid-Term Evaluation</p>
                 </div>
                 <div class="col-sm-9">
+                  {% if midTermForm %}
                   <a href="/midterm/{{det.S_id}}" type="submit" class="mb-0"
-                    >Fill
+                    >View Marks
                   </a>
+                  {% else %}
+                  <a href="/midterm/{{det.S_id}}" type="submit" class="mb-0"
+                    >Fill Form
+                  </a>
+                  {% endif %}
                 </div>
               </div>
               <hr />
               <div class="row">
                 <div class="col-sm-3">
-                  <p class="mb-0">End-Term Form</p>
+                  <p class="mb-0">End-Term Evaluation</p>
                 </div>
                 <div class="col-sm-9">
+                  {% if endTermForm %}
                   <a href="/endterm/{{det.S_id}}" type="submit" class="mb-0"
-                    >Fill
+                    >View Marks
                   </a>
+                  {% else %}
+                  <a href="/endterm/{{det.S_id}}" type="submit" class="mb-0"
+                    >Fill Form
+                  </a>
+                  {% endif %}
                 </div>
               </div>
             </div>

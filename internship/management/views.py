@@ -50,11 +50,15 @@ def home(request):
 
 def details(request, id):
     detai = Student.objects.get(S_id=id)
-    return render(request, 'details.html', {'det': detai})
+    midTermForm = mideterm.objects.filter(SM = id)
+    endTermForm = Endterm.objects.filter(SE = id)
+    return render(request, 'details.html', {'det': detai , 'midTermForm' : midTermForm, 'endTermForm' : endTermForm})
 
 def cdetails(request, id):
     detai = Student.objects.get(S_id=id)
-    return render(request, 'cdetails.html', {'det': detai})
+    midTermForm = Cmideterm.objects.filter(C_SM = id)
+    endTermForm = CEndterm.objects.filter(C_SE = id)
+    return render(request, 'cdetails.html', {'det': detai , 'midTermForm' : midTermForm, 'endTermForm' : endTermForm})
 
 def midterm(request, id):
     if request.method == 'POST':
@@ -79,17 +83,20 @@ def midterm(request, id):
 
         sub.save()
         detai = Student.objects.get(S_id=id)
-        return render(request, 'details.html', {'det': detai})
+        midTermForm = mideterm.objects.filter(SM = id)
+        endTermForm = Endterm.objects.filter(SE = id)
+        return render(request, 'details.html', {'det': detai , 'midTermForm' : midTermForm, 'endTermForm' : endTermForm})
 
     mid = mideterm.objects.filter(SM_id=id)
     if mid.exists():
         form = mideterm.objects.get(SM = id)
         student = Student.objects.get(S_id = id)
         return render(request, 'midform.html', {'form' : form, 'student': student})
-
-    student = Student.objects.get(S_id=id)
-    return render(request, 'midformdet.html', {'student': student})
-
+    else:
+        student = Student.objects.get(S_id=id)
+        return render(request, 'midformdet.html', {'student': student})
+    
+    
 def cmidterm(request, id):
     if request.method == 'POST':
         mark1 = request.POST.get('mark1')
@@ -101,11 +108,11 @@ def cmidterm(request, id):
         mark7 = request.POST.get('mark7')
 
         sub = Cmideterm(C_domainandtech=mark1,
-                       C_profesethi=mark2,
-                       C_interpersonatl=mark3,
-                       C_presentation=mark4,
-                       C_communication=mark5,
-                       C_taskcompleted=mark6,
+                       C_presentation=mark2,
+                       C_taskcompleted=mark3,
+                       C_communication=mark4,
+                       C_interpersonatl=mark5,
+                       C_profesethi=mark6,
                        C_questionans=mark7,
                        C_total=int(mark1)+int(mark2)+int(mark3) +
                        int(mark4)+int(mark5)+int(mark6)+int(mark7),
@@ -113,13 +120,18 @@ def cmidterm(request, id):
 
         sub.save()
         detai = Student.objects.get(S_id=id)
-        return render(request, 'cdetails.html', {'det': detai})
+        midTermForm = Cmideterm.objects.filter(C_SM = id)
+        endTermForm = CEndterm.objects.filter(C_SE = id)
+        return render(request, 'cdetails.html', {'det': detai , 'midTermForm' : midTermForm, 'endTermForm' : endTermForm})
 
     mid = Cmideterm.objects.filter(C_SM_id=id)
     if mid.exists():
-        return render(request, 'cmidform.html')
+        form = Cmideterm.objects.get(C_SM = id)
+        student = Student.objects.get(S_id = id)
+        return render(request, 'cmidform.html', {'form' : form, 'student': student})
 
-    return render(request, 'cmidfordet.html', {'id': id})
+    student = Student.objects.get(S_id=id)
+    return render(request, 'cmidformdet.html', {'student': student})
 
 
 
@@ -152,7 +164,9 @@ def endterm(request,id):
 
         sub.save()
         detai = Student.objects.get(S_id=id)
-        return render(request, 'details.html', {'det': detai})
+        midTermForm = mideterm.objects.filter(SM = id)
+        endTermForm = Endterm.objects.filter(SE = id)
+        return render(request, 'details.html', {'det': detai , 'midTermForm' : midTermForm, 'endTermForm' : endTermForm})
 
     end = Endterm.objects.filter(SE_id=id)
     if end.exists():
@@ -192,10 +206,15 @@ def cendterm(request,id):
 
         sub.save()
         detai = Student.objects.get(S_id=id)
-        return render(request, 'cdetails.html', {'det': detai})
+        midTermForm = Cmideterm.objects.filter(C_SM = id)
+        endTermForm = CEndterm.objects.filter(C_SE = id)
+        return render(request, 'cdetails.html', {'det': detai , 'midTermForm' : midTermForm, 'endTermForm' : endTermForm})
 
     end = CEndterm.objects.filter(C_SE_id=id)
     if end.exists():
-        return render(request, 'cendform.html')
+        form = CEndterm.objects.get(C_SE = id)
+        student = Student.objects.get(S_id = id)
+        return render(request, 'cendform.html', {'form' : form, 'student': student})
 
-    return render(request, 'cendformdet.html', {'id': id})
+    student = Student.objects.get(S_id=id)
+    return render(request, 'cendformdet.html', {'student': student})

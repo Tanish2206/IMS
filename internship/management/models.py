@@ -35,10 +35,10 @@ class Student(models.Model):
     S_mname=models.CharField(max_length=30)
     S_lname=models.CharField(max_length=30)
     S_email=models.CharField(max_length=30)
-    S_address=models.CharField(max_length=50,null=True,blank=True)
-    S_prn=models.CharField(max_length=15,null=True,blank=True)
-    S_geneder=models.CharField(max_length=1)
-    S_contact=models.CharField(max_length=10,null=True,blank=True)
+    S_address=models.CharField(max_length=50,null=True)
+    S_prn=models.CharField(max_length=15,null=True)
+    S_geneder=models.CharField(max_length=1,null=True)
+    S_contact=models.CharField(max_length=10,null=True)
     SCO=models.ForeignKey(CollegeSuper,on_delete=models.DO_NOTHING,null=True,blank=True)
     SC=models.ForeignKey(company,on_delete=models.DO_NOTHING,null=True,blank=True)
     
@@ -56,7 +56,7 @@ class mideterm(models.Model):
  taskcompleted=models.IntegerField()
  questionans=models.IntegerField()
  total=models.IntegerField()
- SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+ SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING, primary_key = True)
 
  def __str__(self) -> str:
     return (self.SM.S_fname + " " + self.SM.S_lname)
@@ -74,7 +74,7 @@ class Endterm(models.Model):
  profess=models.IntegerField()
  qanda=models.IntegerField()
  E_total=models.IntegerField()
- SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+ SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING,primary_key = True)
 
  def __str__(self) -> str:
     return (self.SE.S_fname + " " + self.SE.S_lname)
@@ -89,7 +89,7 @@ class Cmideterm(models.Model):
  C_taskcompleted=models.IntegerField()
  C_questionans=models.IntegerField()
  C_total=models.IntegerField()
- C_SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+ C_SM=models.ForeignKey(Student,on_delete=models.DO_NOTHING,primary_key = True)
 
  def __str__(self) -> str:
     return (self.C_SM.S_fname + " " + self.C_SM.S_lname)
@@ -107,7 +107,7 @@ class CEndterm(models.Model):
  C_profess=models.IntegerField()
  C_qanda=models.IntegerField()
  C_E_total=models.IntegerField()
- C_SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+ C_SE=models.ForeignKey(Student,on_delete=models.DO_NOTHING, primary_key = True)
 
  def __str__(self) -> str:
     return (self.C_SE.S_fname + " " + self.C_SE.S_lname)
