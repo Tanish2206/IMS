@@ -15,4 +15,5 @@ admin.site.register(Endterm)
 admin.site.register(Cmideterm)
 admin.site.register(CEndterm)
 admin.site.register(company)
+admin.site.register(compper)
 

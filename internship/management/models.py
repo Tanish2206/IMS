@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Login(models.Model):
+    
     Loginid=models.CharField(max_length=50)
     Password=models.CharField(max_length=50)
 
@@ -23,10 +24,21 @@ class CollegeSuper(models.Model):
 class company(models.Model):
     C_id=models.AutoField(primary_key=True)   
     C_name=models.CharField(max_length=50)
-    C_email=models.CharField(max_length=100,blank=True,null=True)
+    # C_email=models.CharField(max_length=100,blank=True,null=True)
 
     def __str__(self):
         return self.C_name
+
+class compper(models.Model):
+  P_id=models.AutoField(primary_key=True)
+  P_fname=models.CharField(max_length=50)
+  P_lname=models.CharField(max_length=50)
+  P_email=models.CharField(max_length=70)
+  P_pnol=models.CharField(max_length=11)
+  P_gender=models.CharField(max_length=1)
+  PC=models.ForeignKey(company,on_delete=models.DO_NOTHING)
+
+
 
 
 class Student(models.Model):
@@ -40,7 +52,7 @@ class Student(models.Model):
     S_geneder=models.CharField(max_length=1)
     S_contact=models.CharField(max_length=10,null=True,blank=True)
     SCO=models.ForeignKey(CollegeSuper,on_delete=models.DO_NOTHING,null=True,blank=True)
-    SC=models.ForeignKey(company,on_delete=models.DO_NOTHING,null=True,blank=True)
+    SC=models.ForeignKey(compper,on_delete=models.DO_NOTHING,null=True,blank=True)
     
 
     def __str__(self):
@@ -60,6 +72,7 @@ class mideterm(models.Model):
 
  def __str__(self) -> str:
     return (self.SM.S_fname + " " + self.SM.S_lname)
+
 
 
 class Endterm(models.Model):
@@ -111,6 +124,8 @@ class CEndterm(models.Model):
 
  def __str__(self) -> str:
     return (self.C_SE.S_fname + " " + self.C_SE.S_lname)
+
+
 
 
 
